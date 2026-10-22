@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ментальна карта</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Raleway:wght@400;500;600;700&family=Marck+Script&display=swap&subset=cyrillic" rel="stylesheet">
+<style>
+:root{--bg:#f0e8fa;--bg2:#e6d9f5;--violet:#8b6ab2;--violet-dark:#6d4b91;--brown:#75442f;--brown2:#99563e;--ink:#4e3a60;--glass:rgba(255,255,255,.66);--line:rgba(117,68,47,.19)}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Raleway,sans-serif;color:var(--ink);min-height:100vh;overflow-x:hidden;background:radial-gradient(ellipse at 15% 12%,#faf5ff 0,transparent 35%),radial-gradient(ellipse at 90% 75%,#dfcff3 0,transparent 38%),linear-gradient(135deg,#f3ecfc,#e8dcf7 55%,#f4ecfa)}
+.ambient{position:fixed;inset:0;overflow:hidden;pointer-events:none;z-index:0}
+.lattice{position:absolute;width:180px;height:180px;opacity:.68;filter:drop-shadow(0 8px 14px #8a6ab222);animation:float 9s ease-in-out infinite}
+.lattice.left{left:1.5%;top:19%}.lattice.left2{left:3%;bottom:8%;width:135px;animation-delay:-4s}.lattice.right{right:1.5%;top:23%;animation-delay:-2s}.lattice.right2{right:3%;bottom:9%;width:145px;animation-delay:-6s}
+@keyframes float{0%,100%{transform:translateY(0) rotate(-4deg)}50%{transform:translateY(-22px) rotate(5deg)}}
+.page{position:relative;z-index:1;max-width:900px;margin:auto;padding:28px 24px 46px}
+header{text-align:center;margin-bottom:25px}
+.eyebrow{font-size:.75rem;letter-spacing:.22em;text-transform:uppercase;color:var(--violet-dark);font-weight:700;margin-bottom:8px}
+h1{font:400 clamp(2.8rem,6vw,4.7rem)/1.1 "Marck Script",cursive;color:var(--brown);text-shadow:0 2px #fff9,0 5px 14px #75442f20}
+.intro{max-width:680px;margin:10px auto 20px;line-height:1.7;color:#69557d;font-size:1rem}
+.filters{display:flex;flex-wrap:wrap;align-items:end;justify-content:center;gap:12px;padding:15px 18px;background:rgba(215,195,239,.32);border:1px solid rgba(255,255,255,.48);border-radius:18px;box-shadow:0 8px 24px rgba(109,75,145,.08);backdrop-filter:blur(14px);max-width:780px;margin:0 auto}
+.filter{display:flex;flex-direction:column;gap:6px;text-align:left;min-width:175px}
+.filter label{font-size:.76rem;font-weight:700;letter-spacing:.04em;color:var(--brown)}
+select{font:600 .9rem Raleway,sans-serif;color:#5c426f;background:rgba(238,226,250,.78);border:1px solid rgba(157,123,191,.42);border-radius:11px;padding:11px 34px 11px 12px;outline:none;cursor:pointer;box-shadow:inset 0 1px 2px rgba(255,255,255,.55)}
+select:focus-visible,a:focus-visible{outline:3px solid #a17bc8;outline-offset:3px}
+.reset{border:0;border-radius:11px;padding:12px 17px;font:700 .85rem Raleway,sans-serif;color:#fff;background:linear-gradient(135deg,#9b78c0,#79559d);cursor:pointer;transition:transform .2s,box-shadow .2s}
+.reset:hover{transform:translateY(-2px);box-shadow:0 7px 16px #79559d33}
+.section{margin:38px 0 0}
+.section-head{display:flex;align-items:center;justify-content:center;gap:12px;margin:0 auto 16px;text-align:center;width:fit-content;max-width:100%;padding:8px 28px 10px;background:linear-gradient(120deg,rgba(143,105,181,.22),rgba(255,255,255,.48),rgba(173,126,147,.18));border:1px solid rgba(119,79,151,.30);border-bottom:3px solid rgba(117,68,47,.62);border-radius:16px 16px 8px 8px;box-shadow:0 6px 18px rgba(91,62,119,.10);backdrop-filter:blur(10px)}
+.section-icon{display:none}
+h2{font:400 clamp(2rem,4.2vw,2.8rem) "Marck Script",cursive;color:#6f3d2e;text-shadow:0 1px rgba(255,255,255,.75)}
+.section-sub{display:none}
+.count{display:none}
+.cards{display:flex;flex-direction:column;align-items:center;gap:0;background:transparent;border:0;border-radius:0;max-width:760px;margin:0 auto}
+.card{display:flex;align-items:center;justify-content:center;width:100%;padding:13px 18px;text-align:center;border:0;border-bottom:1px solid rgba(117,68,47,.16);border-radius:0;background:transparent;box-shadow:none;position:relative;overflow:visible;transition:background .2s}
+.card:last-child{border-bottom:none}
+.card:hover{background:rgba(255,255,255,.18);box-shadow:none;transform:none}
+.card-top{display:none}
+.tag{font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;font-weight:800;color:#79569b;background:transparent;border-radius:0;padding:0}
+.grade{font-size:.78rem;font-weight:700;color:var(--brown2);white-space:nowrap}
+.card h3{font:400 1.95rem/1.25 "Marck Script",cursive;color:var(--brown);margin:0;position:relative;flex:0 1 auto;min-width:0;transition:color .15s}
+.card:hover h3{color:var(--brown2)}
+.card h3 a{color:inherit;text-decoration:none;display:block;padding:0 8px}
+.card h3 a:focus-visible{outline:2px solid #a17bc8;outline-offset:5px;border-radius:4px}
+.open-link{display:none}
+.empty{display:none;text-align:center;padding:28px;border:1px dashed #bda7d4;border-radius:18px;color:#7d688f;background:#fff6}
+footer{text-align:center;color:#907da3;font:italic 1rem "Cormorant Garamond",serif;margin-top:40px}
+@media(max-width:900px){.lattice{width:125px;height:125px;opacity:.38}.card h3{font-size:1.75rem}}
+@media(max-width:580px){.page{padding:22px 13px 34px}.lattice{width:85px;height:85px;opacity:.22}.lattice.left{left:-28px}.lattice.right{right:-28px}.filters{padding:13px;gap:10px;background:rgba(215,195,239,.25)}.filter{min-width:calc(50% - 8px);flex:1}.reset{width:100%}.card{align-items:center;gap:0;padding:10px 4px}.card h3{font-size:1.55rem;line-height:1.25}.section{margin-top:30px}.section-head{padding:7px 18px 8px;margin-bottom:13px;border-radius:13px 13px 7px 7px}.section-head h2{font-size:2rem}.intro{font-size:.92rem}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;scroll-behavior:auto!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="ambient" aria-hidden="true">
+<svg class="lattice left" viewBox="0 0 180 180"><g stroke="#9a79bf" stroke-width="1.4" fill="none" opacity=".8"><path d="M30 52L70 29 112 51 112 99 70 123 30 99Z M30 52L70 76 112 51 M70 76V123 M30 99L70 76 112 99 M70 29V76"/><path d="M50 40L91 64 91 111 50 87Z M91 64L132 40 151 73 132 111 91 111" opacity=".65"/></g><g fill="#a98bd0"><circle cx="30" cy="52" r="4"/><circle cx="70" cy="29" r="4"/><circle cx="112" cy="51" r="4"/><circle cx="112" cy="99" r="4"/><circle cx="70" cy="123" r="4"/><circle cx="30" cy="99" r="4"/><circle cx="70" cy="76" r="4"/></g></svg>
+<svg class="lattice left2" viewBox="0 0 180 180"><g stroke="#bd8b8a" stroke-width="1.5" fill="none"><path d="M35 45L75 25 115 45 115 91 75 113 35 91Z M35 45L75 68 115 45 M75 68V113 M35 91L75 68 115 91"/><path d="M75 25L75 68 M115 45L145 64 145 105 115 122 75 113"/></g><g fill="#d1a09b"><circle cx="35" cy="45" r="4"/><circle cx="75" cy="25" r="4"/><circle cx="115" cy="45" r="4"/><circle cx="115" cy="91" r="4"/><circle cx="75" cy="113" r="4"/><circle cx="35" cy="91" r="4"/><circle cx="75" cy="68" r="4"/></g></svg>
+<svg class="lattice right" viewBox="0 0 180 180"><g stroke="#9271b8" stroke-width="1.5" fill="none"><path d="M36 50L77 27 119 50 119 97 77 121 36 97Z M36 50L77 74 119 50 M77 74V121 M36 97L77 74 119 97 M77 27V74"/><path d="M119 50L145 35 160 61 145 88 119 97"/></g><g fill="#b49bd1"><circle cx="36" cy="50" r="4"/><circle cx="77" cy="27" r="4"/><circle cx="119" cy="50" r="4"/><circle cx="119" cy="97" r="4"/><circle cx="77" cy="121" r="4"/><circle cx="36" cy="97" r="4"/><circle cx="77" cy="74" r="4"/></g></svg>
+<svg class="lattice right2" viewBox="0 0 180 180"><g stroke="#b88b7c" stroke-width="1.5" fill="none"><path d="M34 47L74 25 116 47 116 94 74 117 34 94Z M34 47L74 70 116 47 M74 70V117 M34 94L74 70 116 94 M74 25V70"/><path d="M74 70L119 119 148 102 148 62"/></g><g fill="#cda18f"><circle cx="34" cy="47" r="4"/><circle cx="74" cy="25" r="4"/><circle cx="116" cy="47" r="4"/><circle cx="116" cy="94" r="4"/><circle cx="74" cy="117" r="4"/><circle cx="34" cy="94" r="4"/><circle cx="74" cy="70" r="4"/></g></svg>
+</div>
+<main class="page">
+<header>
+<div class="eyebrow">Цифровий навчальний простір</div>
+<h1>Ментальна карта</h1>
+<p class="intro">Ментальна карта — це графічний спосіб візуалізації думок та ідей, який допомагає структурувати інформацію, покращувати її запам'ятовування та стимулювати творче мислення. Вона призначена для швидкого аналізу складних тем, мозкових штурмів та ефективного планування навчального матеріалу.</p>
+<div class="filters" aria-label="Фільтри матеріалів">
+<div class="filter"><label for="gradeFilter">Клас</label><select id="gradeFilter"><option value="all">Усі класи</option><option value="9">9 клас</option><option value="10">10 клас</option><option value="11">11 клас</option></select></div>
+<div class="filter"><label for="subjectFilter">Предмет</label><select id="subjectFilter"><option value="all">Усі предмети</option><option value="physics">Фізика</option></select></div>
+<button class="reset" id="resetFilters" type="button">Скинути фільтри ↺</button>
+</div>
+</header>
+
+<section class="section" aria-labelledby="materialsTitle">
+<div class="section-head"><div class="section-icon">✦</div><div><h2 id="materialsTitle">Навчальні матеріали</h2><p class="section-sub">Ментальні карти та тематичні добірки</p></div><span class="count" id="materialsCount">5 матеріалів</span></div>
+<div class="cards" id="materials">
+<article class="card" data-grade="9" data-subject="physics"><h3><a href="https://canva.link/kqhw8lzhiianndl" target="_blank" rel="noopener noreferrer">Закон відбивання світла. Приклади застосування</a></h3></article>
+<article class="card" data-grade="9" data-subject="physics"><h3><a href="https://canva.link/pc8rbby0zxmdzny" target="_blank" rel="noopener noreferrer">Закон відбивання світла</a></h3></article>
+<article class="card" data-grade="10" data-subject="physics"><h3><a href="https://canva.link/xjsnnfl45zpx3gr" target="_blank" rel="noopener noreferrer">Резонанс. Сфери застосування</a></h3></article>
+<article class="card" data-grade="9" data-subject="physics"><h3><a href="https://canva.link/ojeeu1exzoq8wvm" target="_blank" rel="noopener noreferrer">Плазма</a></h3></article>
+<article class="card" data-grade="11" data-subject="physics"><h3><a href="https://canva.link/jnv0b6p8ok8i4cz" target="_blank" rel="noopener noreferrer">Опір</a></h3></article>
+</div>
+<p class="empty" id="materialsEmpty">За вибраними фільтрами матеріалів не знайдено.</p>
+</section>
+
+<section class="section" aria-labelledby="studentsTitle">
+<div class="section-head"><div class="section-icon">✎</div><div><h2 id="studentsTitle">Роботи учнів</h2><p class="section-sub">Учнівські творчі роботи з фізики</p></div><span class="count" id="studentsCount">3 роботи</span></div>
+<div class="cards" id="students">
+<article class="card" data-grade="9" data-subject="physics"><h3><a href="https://canva.link/yu6alphlkazlr99" target="_blank" rel="noopener noreferrer">Радіоактивність</a></h3></article>
+<article class="card" data-grade="9" data-subject="physics"><h3><a href="https://canva.link/pqxx9uftbof3z4h" target="_blank" rel="noopener noreferrer">Активність радіоактивної речовини</a></h3></article>
+<article class="card" data-grade="9" data-subject="physics"><h3><a href="https://canva.link/up9c5i646f0d7wj" target="_blank" rel="noopener noreferrer">Радіоактивне випромінювання</a></h3></article>
+</div>
+<p class="empty" id="studentsEmpty">За вибраними фільтрами учнівських робіт не знайдено.</p>
+</section>
+<footer>Ментальна карта · Навчальні матеріали та творчість учнів</footer>
+</main>
+<script>
+(function(){
+const grade=document.getElementById('gradeFilter'), subject=document.getElementById('subjectFilter');
+const sections=[{grid:document.getElementById('materials'),count:document.getElementById('materialsCount'),empty:document.getElementById('materialsEmpty'),unit:'матеріалів',one:'матеріал'},{grid:document.getElementById('students'),count:document.getElementById('studentsCount'),empty:document.getElementById('studentsEmpty'),unit:'робіт',one:'робота'}];
+function update(){
+ sections.forEach(s=>{
+  let visible=0;
+  s.grid.querySelectorAll('.card').forEach(card=>{
+   const show=(grade.value==='all'||card.dataset.grade===grade.value)&&(subject.value==='all'||card.dataset.subject===subject.value);
+   card.hidden=!show;if(show)visible++;
+  });
+  s.count.textContent=visible+' '+(s===sections[0]?'матеріалів':'робіт');
+  s.empty.style.display=visible?'none':'block';
+  s.grid.style.display=visible?'flex':'none';
+ });
+}
+grade.addEventListener('change',update);subject.addEventListener('change',update);
+document.getElementById('resetFilters').addEventListener('click',()=>{grade.value='all';subject.value='all';update()});
+update();
+})();
+</script>
+</body>
+</html>
