@@ -11,9 +11,10 @@
 html{scroll-behavior:smooth}
 body{font-family:Raleway,sans-serif;color:var(--ink);min-height:100vh;overflow-x:hidden;background:radial-gradient(ellipse at 15% 12%,#faf5ff 0,transparent 35%),radial-gradient(ellipse at 90% 75%,#dfcff3 0,transparent 38%),linear-gradient(135deg,#f3ecfc,#e8dcf7 55%,#f4ecfa)}
 .ambient{position:fixed;inset:0;overflow:hidden;pointer-events:none;z-index:0}
-.lattice{position:absolute;width:180px;height:180px;opacity:.68;filter:drop-shadow(0 8px 14px #8a6ab222);animation:float 9s ease-in-out infinite}
-.lattice.left{left:1.5%;top:19%}.lattice.left2{left:3%;bottom:8%;width:135px;animation-delay:-4s}.lattice.right{right:1.5%;top:23%;animation-delay:-2s}.lattice.right2{right:3%;bottom:9%;width:145px;animation-delay:-6s}
-@keyframes float{0%,100%{transform:translateY(0) rotate(-4deg)}50%{transform:translateY(-22px) rotate(5deg)}}
+/* Об’ємні атоми й молекули на прозорому тлі */
+.atom-art{position:absolute;width:clamp(145px,17vw,245px);height:auto;opacity:.72;overflow:visible;filter:drop-shadow(0 12px 16px rgba(88,65,124,.13));animation:atom-float 13s ease-in-out infinite;transform-origin:center}
+.atom-art.left{left:-1.6%;top:17%}.atom-art.left2{left:2.1%;bottom:4%;width:clamp(125px,14vw,195px);animation-delay:-5s;opacity:.62}.atom-art.right{right:-1.4%;top:21%;animation-delay:-3s}.atom-art.right2{right:1.8%;bottom:5%;width:clamp(135px,15vw,210px);animation-delay:-8s;opacity:.64}
+@keyframes atom-float{0%,100%{transform:translate3d(0,0,0)}50%{transform:translate3d(0,-18px,0)}}
 .page{position:relative;z-index:1;max-width:900px;margin:auto;padding:28px 24px 46px}
 header{text-align:center;margin-bottom:25px}
 .eyebrow{font-size:.75rem;letter-spacing:.22em;text-transform:uppercase;color:var(--violet-dark);font-weight:700;margin-bottom:8px}
@@ -46,17 +47,40 @@ h2{font:400 clamp(2rem,4.2vw,2.8rem) "Marck Script",cursive;color:#6f3d2e;text-s
 .open-link{display:none}
 .empty{display:none;text-align:center;padding:28px;border:1px dashed #bda7d4;border-radius:18px;color:#7d688f;background:#fff6}
 footer{text-align:center;color:#907da3;font:italic 1rem "Cormorant Garamond",serif;margin-top:40px}
-@media(max-width:900px){.lattice{width:125px;height:125px;opacity:.38}.card h3{font-size:1.75rem}}
-@media(max-width:580px){.page{padding:22px 13px 34px}.lattice{width:85px;height:85px;opacity:.22}.lattice.left{left:-28px}.lattice.right{right:-28px}.filters{padding:13px;gap:10px;background:rgba(215,195,239,.25)}.filter{min-width:calc(50% - 8px);flex:1}.reset{width:100%}.card{align-items:center;gap:0;padding:10px 4px}.card h3{font-size:1.55rem;line-height:1.25}.section{margin-top:30px}.section-head{padding:7px 18px 8px;margin-bottom:13px;border-radius:13px 13px 7px 7px}.section-head h2{font-size:2rem}.intro{font-size:.92rem}}
+@media(max-width:900px){.atom-art{width:clamp(105px,16vw,155px);opacity:.34}.atom-art.left{left:-28px}.atom-art.right{right:-28px}.atom-art.left2,.atom-art.right2{width:clamp(95px,13vw,130px);opacity:.28}.card h3{font-size:1.75rem}}
+@media(max-width:580px){.page{padding:22px 13px 34px}.atom-art{width:92px;opacity:.18}.atom-art.left{left:-35px;top:15%}.atom-art.right{right:-35px;top:26%}.atom-art.left2,.atom-art.right2{width:78px;opacity:.15}.filters{padding:13px;gap:10px;background:rgba(215,195,239,.25)}.filter{min-width:calc(50% - 8px);flex:1}.reset{width:100%}.card{align-items:center;gap:0;padding:10px 4px}.card h3{font-size:1.55rem;line-height:1.25}.section{margin-top:30px}.section-head{padding:7px 18px 8px;margin-bottom:13px;border-radius:13px 13px 7px 7px}.section-head h2{font-size:2rem}.intro{font-size:.92rem}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;scroll-behavior:auto!important;transition:none!important}}
 </style>
 </head>
 <body>
 <div class="ambient" aria-hidden="true">
-<svg class="lattice left" viewBox="0 0 180 180"><g stroke="#9a79bf" stroke-width="1.4" fill="none" opacity=".8"><path d="M30 52L70 29 112 51 112 99 70 123 30 99Z M30 52L70 76 112 51 M70 76V123 M30 99L70 76 112 99 M70 29V76"/><path d="M50 40L91 64 91 111 50 87Z M91 64L132 40 151 73 132 111 91 111" opacity=".65"/></g><g fill="#a98bd0"><circle cx="30" cy="52" r="4"/><circle cx="70" cy="29" r="4"/><circle cx="112" cy="51" r="4"/><circle cx="112" cy="99" r="4"/><circle cx="70" cy="123" r="4"/><circle cx="30" cy="99" r="4"/><circle cx="70" cy="76" r="4"/></g></svg>
-<svg class="lattice left2" viewBox="0 0 180 180"><g stroke="#bd8b8a" stroke-width="1.5" fill="none"><path d="M35 45L75 25 115 45 115 91 75 113 35 91Z M35 45L75 68 115 45 M75 68V113 M35 91L75 68 115 91"/><path d="M75 25L75 68 M115 45L145 64 145 105 115 122 75 113"/></g><g fill="#d1a09b"><circle cx="35" cy="45" r="4"/><circle cx="75" cy="25" r="4"/><circle cx="115" cy="45" r="4"/><circle cx="115" cy="91" r="4"/><circle cx="75" cy="113" r="4"/><circle cx="35" cy="91" r="4"/><circle cx="75" cy="68" r="4"/></g></svg>
-<svg class="lattice right" viewBox="0 0 180 180"><g stroke="#9271b8" stroke-width="1.5" fill="none"><path d="M36 50L77 27 119 50 119 97 77 121 36 97Z M36 50L77 74 119 50 M77 74V121 M36 97L77 74 119 97 M77 27V74"/><path d="M119 50L145 35 160 61 145 88 119 97"/></g><g fill="#b49bd1"><circle cx="36" cy="50" r="4"/><circle cx="77" cy="27" r="4"/><circle cx="119" cy="50" r="4"/><circle cx="119" cy="97" r="4"/><circle cx="77" cy="121" r="4"/><circle cx="36" cy="97" r="4"/><circle cx="77" cy="74" r="4"/></g></svg>
-<svg class="lattice right2" viewBox="0 0 180 180"><g stroke="#b88b7c" stroke-width="1.5" fill="none"><path d="M34 47L74 25 116 47 116 94 74 117 34 94Z M34 47L74 70 116 47 M74 70V117 M34 94L74 70 116 94 M74 25V70"/><path d="M74 70L119 119 148 102 148 62"/></g><g fill="#cda18f"><circle cx="34" cy="47" r="4"/><circle cx="74" cy="25" r="4"/><circle cx="116" cy="47" r="4"/><circle cx="116" cy="94" r="4"/><circle cx="74" cy="117" r="4"/><circle cx="34" cy="94" r="4"/><circle cx="74" cy="70" r="4"/></g></svg>
+<!-- Великий об’ємний атом: градієнтні електрони та орбіталі на прозорому фоні -->
+<svg class="atom-art left" viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
+ <defs><radialGradient id="nucleusA" cx="30%" cy="25%"><stop stop-color="#fff4ff"/><stop offset=".34" stop-color="#c6a9e8"/><stop offset=".75" stop-color="#8b6ab2"/><stop offset="1" stop-color="#65458d"/></radialGradient><radialGradient id="electronA" cx="28%" cy="24%"><stop stop-color="#fff"/><stop offset=".28" stop-color="#bcefe7"/><stop offset=".7" stop-color="#65bfb5"/><stop offset="1" stop-color="#347f78"/></radialGradient><linearGradient id="orbitA" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#b79add" stop-opacity=".78"/><stop offset=".5" stop-color="#fff" stop-opacity=".85"/><stop offset="1" stop-color="#79c9bf" stop-opacity=".7"/></linearGradient></defs>
+ <g fill="none" stroke="url(#orbitA)" stroke-width="3.2"><ellipse cx="120" cy="120" rx="94" ry="39" transform="rotate(-32 120 120)"/><ellipse cx="120" cy="120" rx="94" ry="39" transform="rotate(32 120 120)"/><ellipse cx="120" cy="120" rx="94" ry="39" transform="rotate(90 120 120)"/></g>
+ <g><circle cx="120" cy="120" r="26" fill="url(#nucleusA)"/><circle cx="111" cy="110" r="7" fill="#fff" opacity=".55"/><circle cx="132" cy="129" r="5" fill="#6f4c99" opacity=".7"/></g>
+ <g fill="url(#electronA)"><circle cx="43" cy="77" r="13"/><circle cx="190" cy="85" r="12"/><circle cx="123" cy="27" r="11"/></g><g fill="#fff" opacity=".7"><circle cx="39" cy="73" r="4"/><circle cx="186" cy="81" r="3.7"/><circle cx="119" cy="23" r="3.5"/></g>
+</svg>
+<!-- Молекула з великими сферичними атомами та напівпрозорими зв’язками -->
+<svg class="atom-art left2" viewBox="0 0 220 210" xmlns="http://www.w3.org/2000/svg">
+ <defs><radialGradient id="molPink" cx="28%" cy="23%"><stop stop-color="#fff"/><stop offset=".35" stop-color="#f4c7d8"/><stop offset=".78" stop-color="#cf8eae"/><stop offset="1" stop-color="#a85e87"/></radialGradient><radialGradient id="molMint" cx="28%" cy="23%"><stop stop-color="#fff"/><stop offset=".32" stop-color="#d8fff6"/><stop offset=".76" stop-color="#83d4c7"/><stop offset="1" stop-color="#4d9f96"/></radialGradient><radialGradient id="molGold" cx="28%" cy="23%"><stop stop-color="#fffef1"/><stop offset=".4" stop-color="#f5dfa1"/><stop offset="1" stop-color="#c49b4f"/></radialGradient></defs>
+ <g stroke="#a68bc4" stroke-opacity=".55" stroke-width="11" stroke-linecap="round"><path d="M55 78 109 116 165 66M109 116 145 164"/><path d="M55 78 109 116" stroke="#fff" stroke-opacity=".38" stroke-width="4"/></g>
+ <circle cx="55" cy="78" r="30" fill="url(#molPink)"/><circle cx="109" cy="116" r="37" fill="url(#molMint)"/><circle cx="165" cy="66" r="26" fill="url(#molGold)"/><circle cx="145" cy="164" r="23" fill="url(#molPink)"/>
+ <g fill="#fff" opacity=".62"><circle cx="45" cy="68" r="8"/><circle cx="97" cy="103" r="10"/><circle cx="157" cy="58" r="6"/><circle cx="138" cy="157" r="5"/></g>
+</svg>
+<!-- Друга орбітальна модель атома -->
+<svg class="atom-art right" viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
+ <defs><radialGradient id="nucleusB" cx="28%" cy="24%"><stop stop-color="#fff9f2"/><stop offset=".35" stop-color="#f1c8a7"/><stop offset=".76" stop-color="#d58f70"/><stop offset="1" stop-color="#a75b43"/></radialGradient><radialGradient id="electronB" cx="25%" cy="22%"><stop stop-color="#fff"/><stop offset=".3" stop-color="#e3d8fb"/><stop offset=".75" stop-color="#a58bd1"/><stop offset="1" stop-color="#72539c"/></radialGradient></defs>
+ <g fill="none" stroke-width="3.3"><ellipse cx="120" cy="120" rx="96" ry="38" transform="rotate(42 120 120)" stroke="#d9b8e8" stroke-opacity=".88"/><ellipse cx="120" cy="120" rx="96" ry="38" transform="rotate(-42 120 120)" stroke="#fff" stroke-opacity=".86"/><ellipse cx="120" cy="120" rx="96" ry="38" transform="rotate(90 120 120)" stroke="#a6dcd4" stroke-opacity=".85"/></g>
+ <circle cx="120" cy="120" r="28" fill="url(#nucleusB)"/><circle cx="110" cy="110" r="8" fill="#fff" opacity=".58"/><g fill="url(#electronB)"><circle cx="50" cy="55" r="13"/><circle cx="188" cy="154" r="12"/><circle cx="119" cy="24" r="11"/></g><g fill="#fff" opacity=".72"><circle cx="46" cy="51" r="4"/><circle cx="184" cy="150" r="3.5"/><circle cx="115" cy="20" r="3.5"/></g>
+</svg>
+<!-- Молекулярний кластер -->
+<svg class="atom-art right2" viewBox="0 0 220 210" xmlns="http://www.w3.org/2000/svg">
+ <defs><radialGradient id="clusterBlue" cx="25%" cy="22%"><stop stop-color="#fff"/><stop offset=".35" stop-color="#c6dff8"/><stop offset=".78" stop-color="#7faedc"/><stop offset="1" stop-color="#507cae"/></radialGradient><radialGradient id="clusterLilac" cx="25%" cy="22%"><stop stop-color="#fff"/><stop offset=".35" stop-color="#e9ddfa"/><stop offset=".8" stop-color="#b49ad7"/><stop offset="1" stop-color="#8669b0"/></radialGradient><radialGradient id="clusterCoral" cx="25%" cy="22%"><stop stop-color="#fff"/><stop offset=".35" stop-color="#f8d8c9"/><stop offset=".8" stop-color="#db9a82"/><stop offset="1" stop-color="#b36b55"/></radialGradient></defs>
+ <g stroke="#b4a0d1" stroke-width="12" stroke-linecap="round" stroke-opacity=".6"><path d="M51 125 105 65 164 112 105 158 51 125M105 65 105 158"/></g>
+ <circle cx="51" cy="125" r="29" fill="url(#clusterBlue)"/><circle cx="105" cy="65" r="30" fill="url(#clusterLilac)"/><circle cx="164" cy="112" r="33" fill="url(#clusterCoral)"/><circle cx="105" cy="158" r="24" fill="url(#clusterBlue)"/>
+ <g fill="#fff" opacity=".62"><circle cx="41" cy="115" r="8"/><circle cx="95" cy="55" r="8"/><circle cx="153" cy="100" r="9"/><circle cx="98" cy="151" r="6"/></g>
+</svg>
 </div>
 <main class="page">
 <header>
